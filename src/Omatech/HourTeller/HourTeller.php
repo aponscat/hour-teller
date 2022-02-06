@@ -2,6 +2,8 @@
 
 namespace Omatech\HourTeller;
 
+use Exception;
+
 class HourTeller
 {
     public static function tell (string $hourMinute)
@@ -70,14 +72,24 @@ class HourTeller
     public static function checkInput(string $hourMinute)
     {
         $hourMinuteArray=self::convertToArray($hourMinute);
-        assert(isset($hourMinuteArray[0]) && isset($hourMinuteArray[1])
-        && is_numeric($hourMinuteArray[0]) && is_numeric($hourMinuteArray[1]));
+        if(!isset($hourMinuteArray[0]) || !isset($hourMinuteArray[1])
+        || !is_numeric($hourMinuteArray[0]) || !is_numeric($hourMinuteArray[1]))
+        {
+            throw new Exception("Invalid date format use hh24:mi\n");
+        }
 
         $hour=(int)$hourMinuteArray[0];
-        $minutes=(int)$hourMinuteArray[0];
+        $minutes=(int)$hourMinuteArray[1];
 
-        assert($hour>=0 && $hour<=23);
-        assert($minutes>=0 && $minutes<=59);
+        if ($hour<0 || $hour>23)
+        {
+            throw new Exception("Invalid date format use hh24:mi\n");
+        }
+
+        if ($minutes<0 || $minutes>59)
+        {
+            throw new Exception("Invalid date format use hh24:mi\n");
+        }
     }
 
     public static function getHour(string $hourMinute)
