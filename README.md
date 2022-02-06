@@ -17,3 +17,9 @@ Input a valid hour and get the english translation
 php test.php
 ```
 Get an hour and try to do the translation by yourself
+
+
+TBD:
+- test exceptions of format and out of range hours
+- refactor
+- highlight text differences in test.php
