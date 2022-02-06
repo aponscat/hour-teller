@@ -9,42 +9,46 @@ final class HourTellerTest extends TestCase
 
     public function testOClock(): void
     {        
-        $this->assertTrue("It's 9 o'clock"===HourTeller::tell('9:00'));
-        $this->assertTrue("It's 11 o'clock"===HourTeller::tell('11:00'));
-        $this->assertTrue("It's 12 o'clock"===HourTeller::tell('12:00'));
-        $this->assertTrue("It's 15 o'clock"===HourTeller::tell('15:00'));
+        $this->assertTrue("It's nine o'clock"===HourTeller::tell('9:00'));
+        $this->assertTrue("It's eleven o'clock"===HourTeller::tell('11:00'));
+        $this->assertTrue("It's twelve o'clock"===HourTeller::tell('12:00'));
+        $this->assertTrue("It's fifteen o'clock"===HourTeller::tell('15:00'));
     }
 
     public function testHalfs(): void
     {        
-        $this->assertTrue("It's a half past 9"===HourTeller::tell('9:30'));
-        $this->assertTrue("It's a half past 11"===HourTeller::tell('11:30'));
-        $this->assertTrue("It's a half past 12"===HourTeller::tell('12:30'));
-        $this->assertTrue("It's a half past 15"===HourTeller::tell('15:30'));
+        $this->assertTrue("It's a half past nine"===HourTeller::tell('9:30'));
+        $this->assertTrue("It's a half past eleven"===HourTeller::tell('11:30'));
+        $this->assertTrue("It's a half past twelve"===HourTeller::tell('12:30'));
+        $this->assertTrue("It's a half past fifteen"===HourTeller::tell('15:30'));
     }
 
     public function testQuarters(): void
     {        
-        $this->assertTrue("It's a quarter past 9"===HourTeller::tell('9:15'));
-        $this->assertTrue("It's a quarter past 11"===HourTeller::tell('11:15'));
-        $this->assertTrue("It's a quarter to 12"===HourTeller::tell('11:45'));
-        $this->assertTrue("It's a quarter to 15"===HourTeller::tell('16:45'));
+        $this->assertTrue("It's a quarter past nine"===HourTeller::tell('9:15'));
+        $this->assertTrue("It's a quarter past eleven"===HourTeller::tell('11:15'));
+        $this->assertTrue("It's a quarter to twelve"===HourTeller::tell('11:45'));
+        $this->assertTrue("It's a quarter to seventeen"===HourTeller::tell('16:45'));
     }
 
     public function testMinutesPast(): void
     {        
-        $this->assertTrue("It's 23 minutes past 9"===HourTeller::tell('9:23'));
-        $this->assertTrue("It's 13 minutes past 11"===HourTeller::tell('11:13'));
-        $this->assertTrue("It's 29 minutes past 12"===HourTeller::tell('12:29'));
-        $this->assertTrue("It's 7 minutes past 15"===HourTeller::tell('15:07'));
+        $this->assertTrue("It's one minute past nine"===HourTeller::tell('9:01'));
+        $this->assertTrue("It's twenty-three minutes past nine"===HourTeller::tell('9:23'));
+        $this->assertTrue("It's thirteen minutes past eleven"===HourTeller::tell('11:13'));
+        $this->assertTrue("It's twenty-nine minutes past twelve"===HourTeller::tell('12:29'));
+        $this->assertTrue("It's seven minutes past fifteen"===HourTeller::tell('15:07'));
     }
 
     public function testMinutesTo(): void
     {        
-        $this->assertTrue("It's 29 minutes to 9"===HourTeller::tell('8:31'));
-        $this->assertTrue("It's 12 minutes to 11"===HourTeller::tell('10:48'));
-        $this->assertTrue("It's 9 minutes to 12"===HourTeller::tell('11:48'));
-        $this->assertTrue("It's 23 minutes to 15"===HourTeller::tell('16:37'));
+        $this->assertTrue("It's one minute to nine"===HourTeller::tell('8:59'));
+        $this->assertTrue("It's twenty-nine minutes to nine"===HourTeller::tell('8:31'));
+        $this->assertTrue("It's twelve minutes to eleven"===HourTeller::tell('10:48'));
+        $this->assertTrue("It's nine minutes to twelve"===HourTeller::tell('11:51'));
+        $this->assertTrue("It's twenty-three minutes to fifteen"===HourTeller::tell('14:37'));
+        $this->assertTrue("It's one minute to midnight"===HourTeller::tell('23:59'));
+        $this->assertTrue("It's ten minutes to midnight"===HourTeller::tell('23:50'));
     }
 
 
