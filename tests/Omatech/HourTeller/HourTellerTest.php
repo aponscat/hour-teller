@@ -51,5 +51,40 @@ final class HourTellerTest extends TestCase
         $this->assertTrue("It's ten minutes to midnight"===HourTeller::tell('23:50'));
     }
 
+    public function testInvalidFormat1(): void
+    {
+        $this->expectException(Exception::class);
+        HourTeller::tell('aa:50');
+    }
 
+    public function testInvalidFormat2(): void
+    {
+        $this->expectException(Exception::class);
+        HourTeller::tell('10-50');
+    }
+
+    public function testHourOutOfRange1(): void
+    {
+        $this->expectException(Exception::class);
+        HourTeller::tell('-1:10');
+    }
+
+    public function testHourOutOfRange2(): void
+    {
+        $this->expectException(Exception::class);
+        HourTeller::tell('24:10');
+    }
+
+
+    public function testMinuteOutOfRange1(): void
+    {
+        $this->expectException(Exception::class);
+        HourTeller::tell('10:-1');
+    }
+
+    public function testMinuteOutOfRange2(): void
+    {
+        $this->expectException(Exception::class);
+        HourTeller::tell('10:60');
+    }
 }

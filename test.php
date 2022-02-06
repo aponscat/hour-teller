@@ -11,6 +11,7 @@ while (!is_file(__DIR__.$autoload_location))
 require_once __DIR__.$autoload_location;
 
 use Omatech\HourTeller\HourTeller;
+use Omatech\Utils\StringComparer;
 
 do {
     $hour=random_int(0,11);
@@ -18,14 +19,16 @@ do {
     $input=readline("Enter hour string for $hour:$minute:");
     try
     {
-        echo HourTeller::tell("$hour:$minute")."\n";
-        if (HourTeller::tell("$hour:$minute")==$input)
+        $goodString=HourTeller::tell("$hour:$minute");
+        if ($goodString==$input)
         {
             echo "Good job!\n";
         }
         else
         {
             echo "Buuuuuuh\n";
+            $res=StringComparer::compare($goodString, $input);
+            echo "$goodString\n$input\n$res\n";
         }
     }
     catch (Exception $e)
