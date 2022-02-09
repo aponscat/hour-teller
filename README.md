@@ -18,6 +18,3 @@ php test.php
 ```
 Get an hour and try to do the translation by yourself
 
-
-TBD:
-- refactor
