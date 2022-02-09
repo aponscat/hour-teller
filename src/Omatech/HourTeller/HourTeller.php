@@ -27,46 +27,22 @@ class HourTeller
             $formated_to_hour=$f->format($hour+1,'0');
         }
 
-        if ($minute==0)
+        $messageConditions=[
+            "It's $formated_hour o'clock" => fn($minute)=>$minute==0,
+            "It's a half past $formated_hour" => fn($minute)=>$minute==30,
+            "It's a quarter past $formated_hour" => fn($minute)=>$minute==15,
+            "It's a quarter to $formated_to_hour" => fn($minute)=>$minute==45,
+            "It's $formated_to_minute minute to $formated_to_hour" => fn($minute)=>$minute==59,
+            "It's $formated_minute minute past $formated_hour" => fn($minute)=>$minute==1,
+            "It's $formated_to_minute minutes to $formated_to_hour" => fn($minute)=>$minute>30,
+            "It's $formated_minute minutes past $formated_hour" => fn($minute)=>true
+        ];
+
+        foreach ($messageConditions as $message=>$condition)
         {
-            return "It's $formated_hour o'clock";
+            if($condition($minute)) return $message;
         }
 
-        if ($minute==30)
-        {
-            return "It's a half past $formated_hour";
-        }
-
-        if ($minute==15)
-        {
-            return "It's a quarter past $formated_hour";
-        }
-
-        if ($minute==45)
-        {
-            return "It's a quarter to $formated_to_hour";
-        }
-
-        if ($minute==59)
-        {
-            return "It's $formated_to_minute minute to $formated_to_hour";
-        }
-
-        if ($minute==1)
-        {
-            return "It's $formated_minute minute past $formated_hour";
-        }
-
-        if ($minute>30)
-        {
-            return "It's $formated_to_minute minutes to $formated_to_hour";
-        }
-        else
-        {
-            return "It's $formated_minute minutes past $formated_hour";
-        }
-
-        return "Ups, not controlled!";
     }
 
     public static function checkInput(string $hourMinute)
